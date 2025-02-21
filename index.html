@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACGNET.ID</title>
+    <style> 
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Nunito', sans-serif;
+            text-align: center;
+            color: white;
+            background: url('background.jpg') no-repeat center center/cover;
+            background-attachment: fixed;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        h1 {
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #324a61;
+        }
+        p {
+            font-size: 18px;
+            color: rgba(0, 0, 0, 0.76);
+            margin-top: 10px;
+        }
+        img {
+            max-height: 50px;
+        }
+        .about, .nib {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px;
+            background: #ffffff;
+            color: black;
+            text-align: left;
+        }
+        .about-text, .nib-text {
+            width: 60%;
+        }
+        .about h2, .nib-text h2, .marketing-plan h2 {
+            margin: 20px;
+            color: rgba(0, 0, 255, 0.76);
+            font-size: 24px;
+        }
+        .about t, .nib-text t {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px;
+        }
+        .about h3, .nib-text h3 {
+            font-size: 18px;
+            margin: 20px;
+        }
+        .about p, .nib-text p {
+            font-size: 18px;
+            margin: 20px;
+        }
+        .about-image, .nib-image {
+            text-align: center;
+        }
+        .about-image img
+        {
+            width: 100%;
+            max-width: 500px;
+            max-height: 500px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        .nib-image img {
+            width: 100%;
+            max-width: 5000px;
+            max-height: 5000px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        .misi-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .misi-left, .misi-right {
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+        }
+        .misi-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .misi-item::before {
+            content: '\2713'; /* Unicode untuk tanda ceklis */
+            color: green;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        .marketing-plan {
+            display: absolute;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: #ffffff;
+            color: black;
+            text-align: Center;
+        }
+        .marketing-plan img {
+            width: 100%;
+            max-width: 800px;
+            max-height: 800px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        .marketing-plan h2, h3 {
+            font-size: 24px;
+            margin: 5px;
+            padding: 5px;
+        }
+        .marketing-plan-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .plan-box {
+            padding-top: 5px;
+            border-radius: 10px;
+            width: 40%;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin: 10px;
+            
+        }
+
+        .regular-plan {
+            background: #c0c0c0;
+            color: #324a61;
+        }
+        .elite-plan {
+            background: #f3cb51;
+            color: #324a61;
+        }
+
+        .plan-details {
+            display: none;
+            margin-top: 10px;
+            text-align: left;
+            font-size: 16px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            color: black;
+            list-style-type: none;
+        }
+        .plan-details li {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 15px;
+            padding-top: 25px;
+        }
+        .buy-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: #324a61;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .buy-button:hover {
+            background: #689ccc;
+        }
+        .footer {
+            background: #ffffff;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-top: 3px solid white;
+        }
+        .footer t {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function toggleDetails(plan) {
+            let regularDetails = document.getElementById("regularDetails");
+            let eliteDetails = document.getElementById("eliteDetails");
+            
+            if (plan === 'regular') {
+                regularDetails.style.display = "block";
+                eliteDetails.style.display = "none";
+            } else {
+                eliteDetails.style.display = "block";
+                regularDetails.style.display = "none";
+            }
+        }
+        
+        document.addEventListener("click", function(event) {
+            let regularDetails = document.getElementById("regularDetails");
+            let eliteDetails = document.getElementById("eliteDetails");
+            let regularPlan = document.getElementById("regularPlan");
+            let elitePlan = document.getElementById("elitePlan");
+            
+            if (!regularPlan.contains(event.target) && !elitePlan.contains(event.target)) {
+                regularDetails.style.display = "none";
+                eliteDetails.style.display = "none";
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.png.png" alt="Logo" class="logo">
+        <h1>Peluang Bisnis <br>Terbaik 2025</h1>
+        <p>Menginspirasi dan memimpin transformasi gaya hidup sehat, mandiri, dan berkelanjutan melalui peluang usaha yang inovatif</p>
+    </div>
+    <div class="about">
+        <div class="about-text">
+            <h2>Tentang Kami</h2>
+            <t>PT ASA CIPTA GLOBAL</t>
+            <h3>Visi :</h3>
+            <p>Menjadi perusahaan pilihan utama dalam membangun jaringan distribusi global yang memberdayakan individu untuk mencapai kesuksesan finansial dan pribadi. Menginspirasi dan memimpin transformasi gaya hidup sehat, mandiri, dan berkelanjutan melalui peluang usaha yang inovatif.</p>
+            <h3>Misi :</h3>
+            <div class="misi-container">
+                <div class="misi-left">
+                    <div class="misi-item">Memberdayakan anggota dengan pelatihan, dukungan, dan peluang usaha yang adil dan transparan.</div>
+                    <div class="misi-item">Menyediakan produk berkualitas tinggi yang memberikan manfaat nyata bagi kesehatan, kesejahteraan, dan kebutuhan pelanggan.</div>
+                    <div class="misi-item">Menciptakan lingkungan bisnis yang inklusif yang mendorong inovasi, kerja sama, dan pertumbuhan bersama.</div>
+                </div>
+                <div class="misi-right">
+                    <div class="misi-item">Membangun komunitas global yang berbasis kepercayaan, nilai-nilai etis, dan tanggung jawab sosial.</div>
+                    <div class="misi-item">Mendorong kemandirian finansial melalui sistem kompensasi yang kompetitif dan berkelanjutan.</div>
+                </div>
+            </div>
+        </div>
+        <div class="about-image">
+            <img src="office1.png" alt="Tentang Kami">
+        </div>
+    </div>
+    <div class="nib">
+        <div class="nib-image">
+            <img src="nib.PNG" alt="Nib">
+        </div>
+        <div class="nib-text">
+            <h2>Izin NIB</h2>
+            <t>PT ASA CIPTA GLOBAL</t>
+            <p>Berdasarkan NIB Nomor 0201250016778 pada tanggal 2 Januari 2025 , ACG_Network Resmi menjadi Perusahaan Network Marketing yang fokus dalam pemasaran produk Nutrisi dan Kecantikan.</p>
+        </div>
+    </div>
+    <div class="marketing-plan">
+        <h2>Marketing Plan</h2>
+        <h3>Paket Join</h3>
+        <img src="join.png" alt="Paket Join">
+        <div class="marketing-plan-box">
+            <div class="plan-box regular-plan" id="regularPlan" onclick="toggleDetails('regular')">
+                <h3>Regular Plan</h3>
+                <div class="plan-details" id="regularDetails">
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li> 1. Bonus Sponsor</li>
+                        <img src="bonus-sponsor.png" alt="Bonus Sponsor">
+                        <li> 2. Bonus Pasangan</li>
+                        <img src="bonus-pasangan.png" alt="Bonus Pasangan">
+                        <img src="bonus-pasangan2.png" alt="Bonus Pasangan">
+                        <li> 3. Bonus Reward Reguler</li>
+                        <img src="bonus-reward.png" alt="Bonus Reward Reguler">
+                        <li> 4. Bonus Auto Saving</li>
+                        <img src="bonus-auto-saving.png" alt="Bonus Auto Saving"> 
+                        <img src="bonus-auto-saving2.png" alt="Bonus Auto Saving"> 
+                    </ul>
+                    <button class="buy-button">Beli Sekarang</button>
+                </div>
+            </div>
+            <div class="plan-box elite-plan" id="elitePlan" onclick="toggleDetails('elite')">
+                <h3>Program Elite Club</h3>
+                <div class="plan-details" id="eliteDetails">
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li>1. Bonus Sponsor 30% </li>
+                        <img src="bonus-sponsor-elite.png" alt="Bonus Sponsor Elite">
+                        <li>2. Bonus Reward Elite </li>
+                        <img src="bonus-reward-elite.png" alt="Bonus Reward Elite">
+                        <li>3. Promo Reward </li>
+                        <img src="promo-reward.png" alt="Promo Reward">
+                    </ul>
+                    <button class="buy-button">Beli Sekarang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 <t>PT ASA CIPTA GLOBAL</t>. Semua Hak Dilindungi.</p>
+    </div>
+</body>
+</html>
